@@ -17,7 +17,7 @@
 Для изменения поведения необходимо переписать функцию SuperPart::isNeighbour(p2).
 
 Вот пример такой функции:
-```
+```c++
 bool isNeighbour(SuperPart* p2) {
     return
             this->original->pos.radius(p2->original->pos).length()<d &&
@@ -32,7 +32,7 @@ bool isNeighbour(SuperPart* p2) {
 (обе по полу друг с другом).
 
 Вот пример функции по умолчанию:
-```
+```c++
 bool isConnected(SuperPart* p2){
     return this->original->interact(p2->original).scalar(this->original->m)>0;
 }
@@ -44,16 +44,18 @@ bool isConnected(SuperPart* p2){
 
 ## Применение
 1. Создаем систему частиц PartArray:
-```
+```c++
 PartArray *sys= new PartArray(10,10,1);
 sys->dropRandom(10);
 ```
+
 2. Оборачиваем его в оболочку SuperPartArray:
-```
+```c++
 SuperPartArray* ssys = new SuperPartArray(sys);
 ```
+
 3. Запускаем функцию getMaxCluster(), которая вернет вектор с максимальным кластером:
-```
+```c++
 vector<SuperPart*> v = ssys->getMaxCluster();
 cout<<v.size()<<endl;
 ```
